@@ -7,13 +7,15 @@
     @foreach (var item in Model)
     {
     <div class="col-xs-3">
-        <img src=@item.Avatar>
-        <a href="/user/@item.ID"><h3>@item.Name</h3></a>
-        <p>@item.Username</p>
+                <img src=@item.Avatar>
+        <h3><a href="/user/@item.ID">@item.Name</a><h3>
+        <h4>@item.Username</h4>
         @if(@item.Job == null){
             <p style="Color:Red"> Available for hire!</p>
+            <p style="Color:Red"> Contact them now!</p>           
         }else{
-            <p>@item.Job | @item.Company</p>
+            <p>@item.Job</p>
+            <p>@item.Company</p>
         }
 
     </div>
