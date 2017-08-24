@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+@model RobotModel
+
+<div class="row">
+    <figure>
+        <img src="@Model.Avatar">
+    </figure>
+        <div class="contact">
+          <h3>@Model.Name</h3>
+          <h4>@Model.Username</h4>
+          @if(@Model.Address["city"] == null)
+          {
+              <p></p>
+          }else{
+              <p>@Model.Address["city"] | @Model.Address["country"]</p>
+          }
+          @if(@Model.Job == null)
+          {
+              <p style="Color:Red"> Available for hire!</p>
+          }else{
+              <p>@Model.Job | @Model.Company</p>
+          }
+          <p>@Model.Email | @Model.Phone</p>
+          @if(@Model.University == null)
+          {
+              <p></p>
+          }else {
+              <p><strong>Education:</strong> @Model.University</p>
+          }
+          <p><strong>Skills:</strong>@foreach(var item in @Model.Skills)
+          {
+              <span>@item</span> 
+          }
+          </p>
+          
+    </div>

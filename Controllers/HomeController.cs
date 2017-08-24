@@ -19,12 +19,12 @@ namespace roboots.Controllers
 
             return View(robotList);
         }
-
-        public IActionResult About()
+        [Route("/user/{ID}")]
+        public IActionResult UserID(int id)
         {
-            ViewData["Message"] = "Your application description page.";
+            var robotList = RobotServices.Builder();
+            return View(robotList[id -1]);
 
-            return View();
         }
 
         public IActionResult Contact()
