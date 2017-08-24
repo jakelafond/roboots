@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using roboots.Models;
 using System.IO;
 using Newtonsoft.Json;
+using roboots.Services;
 
 namespace roboots.Controllers
 {
@@ -14,16 +15,9 @@ namespace roboots.Controllers
     {
         public IActionResult Index()
         {
-            JsonSerializer serializer = new JsonSerializer();
+            var robotList = RobotServices.Builder();
 
-                using (var reader = new StreamReader(System.IO.File.Open("robots.json",FileMode.Open)))
-                {
-                    var vehicleInfo2 = JsonConvert.DeserializeObject<VehicleInfo>(file.ReadToEnd());
-                    vehicleList.Add(vehicleInfo2);
-                    totalOdometer += vehicleInfo2.Odometer;
-                    tableHtml += string.Format($"{itemTemplate}",vehicleInfo2.VIN,vehicleInfo2.Odometer,vehicleInfo2.Consumption,vehicleInfo2.OdometerLastOilChange,vehicleInfo2.EngineSize);
-                }
-            return View();
+            return View(robotList);
         }
 
         public IActionResult About()
